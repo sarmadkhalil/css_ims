@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('home');
+   });
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('products', 'ProductController');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('products', 'ProductController');
 
