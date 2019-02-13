@@ -12,9 +12,8 @@
         <a class="navbar-brand" href="{{ URL::to('products') }}">IMS</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('products') }}">View All Products</a></li>
-        <li><a href="{{ URL::to('products/create') }}">Add new product(s)</a>
-        
+        <li><a href="{{ URL::to('suppliers') }}">View All Suppliers</a></li>
+        <li><a href="{{ URL::to('suppliers/create') }}">Add new supplier(s)</a>
         <li class="nav-item dropdown mr-auto">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -35,7 +34,7 @@
     </ul>
 </nav>
 
-<h1>All Products</h1>
+<h1>All Suppliers</h1>
 
 <!-- will be used to show any messages -->
 @if (Session::has('message'))
@@ -47,39 +46,23 @@
         <tr>
             <td>ID</td>
             <td>Name</td>
-            <td>PartNumber</td>
-            <td>Label</td>
-            <td>Starting Inventory</td>
-            <td>Inventory recieved</td>
-            <td>Inventory on Hand</td>
-            <td>Minimum Required</td>
         </tr>
     </thead>
     <tbody>
-    @foreach($products as $key => $value)
+    @foreach($suppliers as $key => $value)
         <tr>
             <td>{{ $value->id }}</td>
-            <td>{{ $value->ProductName }}</td>
-            <td>{{ $value->PartNumber }}</td>
-            <td>{{ $value->ProductLabel }}</td>
-            <td>{{ $value->StartingInventory }}</td>
-            <td>{{ $value->InventoryRecieved }}</td>
-            <td>{{ $value->InventoryOnHand }}</td>
-            <td>{{ $value->MinimumRequired }}</td>
-
+            <td>{{ $value->Supplier }}</td>
             <!-- we will also add show, edit, and delete buttons -->
             <td>
 
-                {{ Form::open(array('url' => 'products/' . $value->id, 'class' => 'pull-right')) }}
+                {{ Form::open(array('url' => 'suppliers/' . $value->id)) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this product', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit('Delete this supplier', array('class' => 'btn btn-warning')) }}
                 {{ Form::close() }}
 
-                <!-- show the product (uses the show method found at GET /products/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('products/' . $value->id) }}">Show this Product</a>
-
-                <!-- edit this product (uses the edit method found at GET /products/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('products/' . $value->id . '/edit') }}">Edit this Product</a>
+                <!-- show the supplier (uses the show method found at GET /suppliers/{id} -->
+                <a class="btn btn-small btn-success" href="{{ URL::to('suppliers/' . $value->id) }}">Show this Supplier</a>
 
             </td>
         </tr>
