@@ -9,7 +9,7 @@
 
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{ URL::to('ims') }}">IMS</a>
+        <a class="navbar-brand" href="{{ URL::to('products') }}">IMS</a>
     </div>
     <ul class="nav navbar-nav">
         <li><a href="{{ URL::to('products') }}">View All Products</a></li>
